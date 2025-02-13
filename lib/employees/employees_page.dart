@@ -1,4 +1,4 @@
-import 'package:be_talent/employees/employees_api.dart';
+import 'package:be_talent/employees/employees_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -6,10 +6,11 @@ class EmployeesPage extends HookConsumerWidget {
   const EmployeesPage({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final employees = ref.watch(employeesProvider);
+    final asyncState = ref.watch(employeesNotifierProvider);
     return Scaffold(
-      body: employees.when(
-        data: (employees) {
+      body: asyncState.when(
+        data: (state) {
+          final employees = state.employees;
           if (employees.isEmpty) return const Text('Is empty');
           return ListView.builder(
             itemCount: employees.length,
@@ -26,6 +27,7 @@ class EmployeesPage extends HookConsumerWidget {
           children: [
             const Text('Error'),
             Text(err.toString()),
+            Text(stack.toString()),
           ],
         ),
         loading: () => const CircularProgressIndicator.adaptive(),

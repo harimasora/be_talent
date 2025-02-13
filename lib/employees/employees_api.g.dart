@@ -6,11 +6,11 @@ part of 'employees_api.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$employeesHash() => r'db4c6c22c4a07ab99adc856da3dc43d5051af949';
+String _$employeesHash() => r'8a7bd56d64d15fcc20acdcbefbbc314551ab1198';
 
 /// See also [employees].
 @ProviderFor(employees)
-final employeesProvider = AutoDisposeFutureProvider<List<dynamic>>.internal(
+final employeesProvider = AutoDisposeFutureProvider<List<Employee>>.internal(
   employees,
   name: r'employeesProvider',
   debugGetCreateSourceHash:
@@ -21,6 +21,6 @@ final employeesProvider = AutoDisposeFutureProvider<List<dynamic>>.internal(
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-typedef EmployeesRef = AutoDisposeFutureProviderRef<List<dynamic>>;
+typedef EmployeesRef = AutoDisposeFutureProviderRef<List<Employee>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
