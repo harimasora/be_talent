@@ -10,7 +10,7 @@ class EmployeesPage extends HookConsumerWidget {
     return Scaffold(
       body: employees.when(
         data: (employees) {
-          if (employees == null || employees.isEmpty) return const Text('Is empty');
+          if (employees.isEmpty) return const Text('Is empty');
           return ListView.builder(
             itemCount: employees.length,
             itemBuilder: (context, index) {
