@@ -1,8 +1,5 @@
-import 'package:be_talent/common/colors.dart';
 import 'package:be_talent/employees/employees_notifier.dart';
-import 'package:be_talent/employees/widgets/employee_list_view.dart';
-import 'package:be_talent/employees/widgets/notification_button.dart';
-import 'package:be_talent/employees/widgets/profile_button.dart';
+import 'package:be_talent/employees/widgets/sliver_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -13,47 +10,35 @@ class EmployeesPage extends HookConsumerWidget {
     final asyncState = ref.watch(employeesNotifierProvider);
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: BeTalentAppBar(),
-      body: asyncState.when(
-        data: (state) => EmployeeListView(employees: state.employees),
-        error: (err, stack) => Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text('Error'),
-            Text(err.toString()),
-            Text(stack.toString()),
-          ],
-        ),
-        loading: () => const CircularProgressIndicator.adaptive(),
-      ),
-    );
-  }
-}
-
-class BeTalentAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const BeTalentAppBar({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return ColoredBox(
-      color: Colors.white.withAlpha(242),
-      child: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
-          child: Row(
-            children: [
-              ProfileButton(),
-              Spacer(),
-              NotificationButton(
-                text: '02',
+      body: CustomScrollView(
+        slivers: [
+          BeTalentSliverAppBar(),
+          asyncState.when(
+            data: (state) {
+              final employees = state.employees;
+              return SliverList.builder(
+                itemCount: employees.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Text(employees[index].toString()),
+                  );
+                },
+              );
+            },
+            error: (err, stack) => SliverToBoxAdapter(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text('Error'),
+                  Text(err.toString()),
+                  Text(stack.toString()),
+                ],
               ),
-            ],
+            ),
+            loading: () => SliverToBoxAdapter(child: const CircularProgressIndicator.adaptive()),
           ),
-        ),
+        ],
       ),
     );
   }
-
-  @override
-  Size get preferredSize => Size.fromHeight(68);
 }
