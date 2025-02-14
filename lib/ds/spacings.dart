@@ -6,6 +6,7 @@ abstract class Spacings {
   static const x3 = 3 * _gridSize;
   static const x4 = 4 * _gridSize;
   static const x5 = 5 * _gridSize;
+  static const x6 = 5 * _gridSize;
   static const x7 = 7 * _gridSize;
   static const x8 = 8 * _gridSize;
   static const x10 = 10 * _gridSize;
