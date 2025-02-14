@@ -1,4 +1,5 @@
-import 'package:be_talent/common/colors.dart';
+import 'package:be_talent/ds/static_colors.dart';
+import 'package:be_talent/ds/text.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -9,7 +10,7 @@ class ProfileButton extends HookConsumerWidget {
     return CircleAvatar(
       backgroundColor: StaticColors.gray5,
       radius: 22.5,
-      child: Text('CG'),
+      child: BTHeading3('CG'),
     );
   }
 }

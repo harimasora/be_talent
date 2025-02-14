@@ -1,4 +1,6 @@
-import 'package:be_talent/common/colors.dart';
+import 'package:be_talent/ds/spacings.dart';
+import 'package:be_talent/ds/static_colors.dart';
+import 'package:be_talent/ds/text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -16,26 +18,22 @@ class NotificationButton extends HookConsumerWidget {
         SvgPicture.asset('assets/icons/bell-notification.svg'),
         if (text != null)
           Positioned(
-            top: -5,
-            right: -5,
+            top: -Spacings.x1,
+            right: -Spacings.x1,
             child: Stack(
               alignment: AlignmentDirectional.center,
               children: [
                 Container(
-                  width: 20,
-                  height: 20,
+                  width: Spacings.x5,
+                  height: Spacings.x5,
                   decoration: BoxDecoration(
                     color: StaticColors.blue,
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(Spacings.x4),
                   ),
                 ),
-                Text(
+                BTFootnote(
                   text!,
-                  style: TextStyle(
-                    fontSize: 10,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
+                  style: TextStyle(color: StaticColors.white),
                 ),
               ],
             ),

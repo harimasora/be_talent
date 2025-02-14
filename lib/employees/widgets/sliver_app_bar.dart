@@ -1,3 +1,5 @@
+import 'package:be_talent/ds/spacings.dart';
+import 'package:be_talent/ds/static_colors.dart';
 import 'package:be_talent/employees/widgets/notification_button.dart';
 import 'package:be_talent/employees/widgets/profile_button.dart';
 import 'package:flutter/material.dart';
@@ -22,9 +24,9 @@ class _BeTalentAppBarDelegate extends SliverPersistentHeaderDelegate {
   @override
   Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
     return ColoredBox(
-      color: Colors.white.withAlpha(242),
+      color: StaticColors.white.withAlpha(242),
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+        padding: const EdgeInsets.symmetric(vertical: Spacings.x3, horizontal: Spacings.x5),
         child: Column(
           children: [
             SizedBox(
