@@ -8,6 +8,7 @@ class Employee with _$Employee {
   const factory Employee({
     required String id,
     required String name,
+    required String job,
     @JsonKey(name: 'admission_date') required DateTime admissionDate,
     required String phone,
     required String image,

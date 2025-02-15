@@ -22,6 +22,7 @@ Employee _$EmployeeFromJson(Map<String, dynamic> json) {
 mixin _$Employee {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  String get job => throw _privateConstructorUsedError;
   @JsonKey(name: 'admission_date')
   DateTime get admissionDate => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
@@ -45,6 +46,7 @@ abstract class $EmployeeCopyWith<$Res> {
   $Res call(
       {String id,
       String name,
+      String job,
       @JsonKey(name: 'admission_date') DateTime admissionDate,
       String phone,
       String image});
@@ -67,6 +69,7 @@ class _$EmployeeCopyWithImpl<$Res, $Val extends Employee>
   $Res call({
     Object? id = null,
     Object? name = null,
+    Object? job = null,
     Object? admissionDate = null,
     Object? phone = null,
     Object? image = null,
@@ -79,6 +82,10 @@ class _$EmployeeCopyWithImpl<$Res, $Val extends Employee>
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      job: null == job
+          ? _value.job
+          : job // ignore: cast_nullable_to_non_nullable
               as String,
       admissionDate: null == admissionDate
           ? _value.admissionDate
@@ -107,6 +114,7 @@ abstract class _$$EmployeeImplCopyWith<$Res>
   $Res call(
       {String id,
       String name,
+      String job,
       @JsonKey(name: 'admission_date') DateTime admissionDate,
       String phone,
       String image});
@@ -127,6 +135,7 @@ class __$$EmployeeImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? name = null,
+    Object? job = null,
     Object? admissionDate = null,
     Object? phone = null,
     Object? image = null,
@@ -139,6 +148,10 @@ class __$$EmployeeImplCopyWithImpl<$Res>
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      job: null == job
+          ? _value.job
+          : job // ignore: cast_nullable_to_non_nullable
               as String,
       admissionDate: null == admissionDate
           ? _value.admissionDate
@@ -162,6 +175,7 @@ class _$EmployeeImpl implements _Employee {
   const _$EmployeeImpl(
       {required this.id,
       required this.name,
+      required this.job,
       @JsonKey(name: 'admission_date') required this.admissionDate,
       required this.phone,
       required this.image});
@@ -174,6 +188,8 @@ class _$EmployeeImpl implements _Employee {
   @override
   final String name;
   @override
+  final String job;
+  @override
   @JsonKey(name: 'admission_date')
   final DateTime admissionDate;
   @override
@@ -183,7 +199,7 @@ class _$EmployeeImpl implements _Employee {
 
   @override
   String toString() {
-    return 'Employee(id: $id, name: $name, admissionDate: $admissionDate, phone: $phone, image: $image)';
+    return 'Employee(id: $id, name: $name, job: $job, admissionDate: $admissionDate, phone: $phone, image: $image)';
   }
 
   @override
@@ -193,6 +209,7 @@ class _$EmployeeImpl implements _Employee {
             other is _$EmployeeImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.job, job) || other.job == job) &&
             (identical(other.admissionDate, admissionDate) ||
                 other.admissionDate == admissionDate) &&
             (identical(other.phone, phone) || other.phone == phone) &&
@@ -202,7 +219,7 @@ class _$EmployeeImpl implements _Employee {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, name, admissionDate, phone, image);
+      Object.hash(runtimeType, id, name, job, admissionDate, phone, image);
 
   /// Create a copy of Employee
   /// with the given fields replaced by the non-null parameter values.
@@ -224,6 +241,7 @@ abstract class _Employee implements Employee {
   const factory _Employee(
       {required final String id,
       required final String name,
+      required final String job,
       @JsonKey(name: 'admission_date') required final DateTime admissionDate,
       required final String phone,
       required final String image}) = _$EmployeeImpl;
@@ -235,6 +253,8 @@ abstract class _Employee implements Employee {
   String get id;
   @override
   String get name;
+  @override
+  String get job;
   @override
   @JsonKey(name: 'admission_date')
   DateTime get admissionDate;

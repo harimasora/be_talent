@@ -104,6 +104,13 @@ class EmployeeExpansionListTile extends HookConsumerWidget {
         children: [
           Row(
             children: [
+              BTHeading2('Cargo'),
+              Spacer(),
+              Text(employee.job),
+            ],
+          ),
+          Row(
+            children: [
               BTHeading2('Data de admissão'),
               Spacer(),
               Text(employee.admissionDate.toString()),
@@ -113,7 +120,7 @@ class EmployeeExpansionListTile extends HookConsumerWidget {
             children: [
               BTHeading2('Telefone'),
               Spacer(),
-              Text(employee.phone.toString()),
+              Text(employee.phone),
             ],
           ),
         ],

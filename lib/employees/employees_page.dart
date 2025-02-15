@@ -1,12 +1,9 @@
 import 'package:be_talent/ds/spacings.dart';
-import 'package:be_talent/ds/static_colors.dart';
 import 'package:be_talent/ds/text.dart';
 import 'package:be_talent/employees/employees_notifier.dart';
-import 'package:be_talent/employees/models/employee.dart';
 import 'package:be_talent/employees/widgets/employee_list_view.dart';
 import 'package:be_talent/employees/widgets/sliver_app_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class EmployeesPage extends HookConsumerWidget {
