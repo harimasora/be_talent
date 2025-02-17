@@ -100,31 +100,60 @@ class EmployeeExpansionListTile extends HookConsumerWidget {
           isExpandedState.value = !isExpandedState.value;
         },
       ),
-      child: Column(
-        children: [
-          Row(
-            children: [
-              BTHeading2('Cargo'),
-              Spacer(),
-              Text(employee.job),
-            ],
-          ),
-          Row(
-            children: [
-              BTHeading2('Data de admissão'),
-              Spacer(),
-              Text(employee.admissionDate.toString()),
-            ],
-          ),
-          Row(
-            children: [
-              BTHeading2('Telefone'),
-              Spacer(),
-              Text(employee.phone),
-            ],
-          ),
-        ],
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: Spacings.x4, vertical: Spacings.x4),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Row(
+              children: [
+                BTHeading2('Cargo'),
+                Spacer(),
+                BTHeading3(employee.job),
+              ],
+            ),
+            CustomPaint(painter: _DashedLine()),
+            SizedBox(height: Spacings.x4),
+            Row(
+              children: [
+                BTHeading2('Data de admissão'),
+                Spacer(),
+                BTHeading3(employee.formattedAdmissionDate),
+              ],
+            ),
+            CustomPaint(painter: _DashedLine()),
+            SizedBox(height: Spacings.x4),
+            Row(
+              children: [
+                BTHeading2('Telefone'),
+                Spacer(),
+                BTHeading3(employee.formattedPhone),
+              ],
+            ),
+            CustomPaint(painter: _DashedLine()),
+            SizedBox(height: Spacings.x4),
+          ],
+        ),
       ),
     );
   }
+}
+
+class _DashedLine extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    double positionX = 0;
+    const lineLength = 2;
+    const lineGap = 2;
+    final paint = Paint()
+      ..color = StaticColors.gray10
+      ..strokeWidth = 1;
+    while (positionX < size.width) {
+      canvas.drawLine(Offset(positionX, 0), Offset(positionX + lineLength, 0), paint);
+      positionX += lineLength + lineGap;
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
 }

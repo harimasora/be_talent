@@ -171,14 +171,15 @@ class __$$EmployeeImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$EmployeeImpl implements _Employee {
+class _$EmployeeImpl extends _Employee {
   const _$EmployeeImpl(
       {required this.id,
       required this.name,
       required this.job,
       @JsonKey(name: 'admission_date') required this.admissionDate,
       required this.phone,
-      required this.image});
+      required this.image})
+      : super._();
 
   factory _$EmployeeImpl.fromJson(Map<String, dynamic> json) =>
       _$$EmployeeImplFromJson(json);
@@ -237,7 +238,7 @@ class _$EmployeeImpl implements _Employee {
   }
 }
 
-abstract class _Employee implements Employee {
+abstract class _Employee extends Employee {
   const factory _Employee(
       {required final String id,
       required final String name,
@@ -245,6 +246,7 @@ abstract class _Employee implements Employee {
       @JsonKey(name: 'admission_date') required final DateTime admissionDate,
       required final String phone,
       required final String image}) = _$EmployeeImpl;
+  const _Employee._() : super._();
 
   factory _Employee.fromJson(Map<String, dynamic> json) =
       _$EmployeeImpl.fromJson;
