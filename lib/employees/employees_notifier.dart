@@ -12,6 +12,10 @@ class EmployeesNotifier extends _$EmployeesNotifier {
     return EmployeesState(employees: response);
   }
 
+  void refresh() {
+    ref.invalidate(employeesProvider);
+  }
+
   void changeFilterSubject(String value) {
     state = state.copyWith(filterSubject: value);
   }

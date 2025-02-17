@@ -1,32 +1,105 @@
 import 'package:be_talent/ds/bt_expansion_list_tile.dart';
+import 'package:be_talent/ds/skeleton.dart';
 import 'package:be_talent/ds/spacings.dart';
 import 'package:be_talent/ds/static_colors.dart';
 import 'package:be_talent/ds/text.dart';
+import 'package:be_talent/employees/employees_notifier.dart';
 import 'package:be_talent/employees/models/employee.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class EmployeeListView extends HookConsumerWidget {
-  const EmployeeListView({required this.employees, super.key});
+const _borderSide = BorderSide(
+  color: StaticColors.gray10,
+  width: 1,
+);
 
-  final List<Employee> employees;
+class EmployeeListView extends HookConsumerWidget {
+  const EmployeeListView({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final asyncFilteredEmployees = ref.watch(employeesNotifierProvider.select((v) => v.filteredEmployees));
+    return asyncFilteredEmployees.when(
+      data: (employees) {
+        return SliverMainAxisGroup(
+          slivers: [
+            _Header(),
+            if (employees.isEmpty)
+              _EmptyListTile()
+            else
+              SliverList.builder(
+                itemCount: employees.length,
+                itemBuilder: (context, index) => EmployeeExpansionListTile(
+                  key: ValueKey(employees[index].id),
+                  employee: employees[index],
+                ),
+              ),
+          ],
+        );
+      },
+      error: (err, stack) => _Error(),
+      loading: () => _Loading(),
+    );
+  }
+}
+
+class _Error extends HookConsumerWidget {
+  const _Error();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final notifier = ref.watch(employeesNotifierProvider.notifier);
+    return SliverToBoxAdapter(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text('Ocorreu um erro ao carregar os dados'),
+          SizedBox(height: Spacings.x4),
+          ElevatedButton(
+            onPressed: notifier.refresh,
+            child: BTHeading2('Tentar novamente'),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _Loading extends StatelessWidget {
+  const _Loading({super.key});
+
+  @override
+  Widget build(BuildContext context) {
     return SliverMainAxisGroup(
       slivers: [
         _Header(),
-        if (employees.isEmpty)
-          _EmptyListTile()
-        else
-          SliverList.builder(
-            itemCount: employees.length,
-            itemBuilder: (context, index) => EmployeeExpansionListTile(
-              key: ValueKey(employees[index].id),
-              employee: employees[index],
+        SliverList.builder(
+          itemCount: 5,
+          itemBuilder: (context, index) => DecoratedBox(
+            decoration: BoxDecoration(
+                border: Border(
+              left: _borderSide,
+              right: _borderSide,
+              bottom: _borderSide,
+            )),
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: Spacings.x4, vertical: Spacings.x3),
+              child: Row(
+                children: [
+                  Skeleton.circle(size: Spacings.x8),
+                  SizedBox(width: Spacings.x4),
+                  Skeleton.roundedCorners(
+                    height: styles[BTTypography.h3]!.fontSize!,
+                    width: Spacings.x20,
+                    borderRadius: Spacings.x1,
+                  ),
+                ],
+              ),
             ),
           ),
+        )
       ],
     );
   }
@@ -150,17 +223,13 @@ class _EmptyListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const borderSide = BorderSide(
-      color: StaticColors.gray10,
-      width: 1,
-    );
     return SliverToBoxAdapter(
       child: DecoratedBox(
         decoration: BoxDecoration(
           border: Border(
-            left: borderSide,
-            right: borderSide,
-            bottom: borderSide,
+            left: _borderSide,
+            right: _borderSide,
+            bottom: _borderSide,
           ),
         ),
         child: Padding(
