@@ -17,13 +17,16 @@ class EmployeeListView extends HookConsumerWidget {
     return SliverMainAxisGroup(
       slivers: [
         _Header(),
-        SliverList.builder(
-          itemCount: employees.length,
-          itemBuilder: (context, index) => EmployeeExpansionListTile(
-            key: ValueKey(employees[index].id),
-            employee: employees[index],
+        if (employees.isEmpty)
+          _EmptyListTile()
+        else
+          SliverList.builder(
+            itemCount: employees.length,
+            itemBuilder: (context, index) => EmployeeExpansionListTile(
+              key: ValueKey(employees[index].id),
+              employee: employees[index],
+            ),
           ),
-        ),
       ],
     );
   }
@@ -136,6 +139,35 @@ class EmployeeExpansionListTile extends HookConsumerWidget {
             CustomPaint(painter: _DashedLine()),
             SizedBox(height: Spacings.x4),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class _EmptyListTile extends StatelessWidget {
+  const _EmptyListTile();
+
+  @override
+  Widget build(BuildContext context) {
+    const borderSide = BorderSide(
+      color: StaticColors.gray10,
+      width: 1,
+    );
+    return SliverToBoxAdapter(
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          border: Border(
+            left: borderSide,
+            right: borderSide,
+            bottom: borderSide,
+          ),
+        ),
+        child: Padding(
+          padding: EdgeInsets.all(Spacings.x4),
+          child: Center(
+            child: BTHeading3('Nenhum resultado encontrado'),
+          ),
         ),
       ),
     );
