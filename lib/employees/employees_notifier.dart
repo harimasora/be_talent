@@ -7,8 +7,12 @@ part 'employees_notifier.g.dart';
 @riverpod
 class EmployeesNotifier extends _$EmployeesNotifier {
   @override
-  Future<EmployeesState> build() async {
-    final response = await ref.watch(employeesProvider.future);
+  EmployeesState build() {
+    final response = ref.watch(employeesProvider);
     return EmployeesState(employees: response);
+  }
+
+  void changeFilterSubject(String value) {
+    state = state.copyWith(filterSubject: value);
   }
 }

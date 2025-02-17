@@ -19,7 +19,10 @@ class EmployeeListView extends HookConsumerWidget {
         _Header(),
         SliverList.builder(
           itemCount: employees.length,
-          itemBuilder: (context, index) => EmployeeExpansionListTile(employee: employees[index]),
+          itemBuilder: (context, index) => EmployeeExpansionListTile(
+            key: ValueKey(employees[index].id),
+            employee: employees[index],
+          ),
         ),
       ],
     );

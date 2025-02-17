@@ -14,16 +14,11 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-EmployeesState _$EmployeesStateFromJson(Map<String, dynamic> json) {
-  return _EmployeesState.fromJson(json);
-}
-
 /// @nodoc
 mixin _$EmployeesState {
-  List<Employee> get employees => throw _privateConstructorUsedError;
-
-  /// Serializes this EmployeesState to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  AsyncValue<List<Employee>> get employees =>
+      throw _privateConstructorUsedError;
+  String get filterSubject => throw _privateConstructorUsedError;
 
   /// Create a copy of EmployeesState
   /// with the given fields replaced by the non-null parameter values.
@@ -38,7 +33,7 @@ abstract class $EmployeesStateCopyWith<$Res> {
           EmployeesState value, $Res Function(EmployeesState) then) =
       _$EmployeesStateCopyWithImpl<$Res, EmployeesState>;
   @useResult
-  $Res call({List<Employee> employees});
+  $Res call({AsyncValue<List<Employee>> employees, String filterSubject});
 }
 
 /// @nodoc
@@ -57,12 +52,17 @@ class _$EmployeesStateCopyWithImpl<$Res, $Val extends EmployeesState>
   @override
   $Res call({
     Object? employees = null,
+    Object? filterSubject = null,
   }) {
     return _then(_value.copyWith(
       employees: null == employees
           ? _value.employees
           : employees // ignore: cast_nullable_to_non_nullable
-              as List<Employee>,
+              as AsyncValue<List<Employee>>,
+      filterSubject: null == filterSubject
+          ? _value.filterSubject
+          : filterSubject // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -75,7 +75,7 @@ abstract class _$$EmployeesStateImplCopyWith<$Res>
       __$$EmployeesStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Employee> employees});
+  $Res call({AsyncValue<List<Employee>> employees, String filterSubject});
 }
 
 /// @nodoc
@@ -92,36 +92,39 @@ class __$$EmployeesStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? employees = null,
+    Object? filterSubject = null,
   }) {
     return _then(_$EmployeesStateImpl(
       employees: null == employees
-          ? _value._employees
+          ? _value.employees
           : employees // ignore: cast_nullable_to_non_nullable
-              as List<Employee>,
+              as AsyncValue<List<Employee>>,
+      filterSubject: null == filterSubject
+          ? _value.filterSubject
+          : filterSubject // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$EmployeesStateImpl implements _EmployeesState {
-  const _$EmployeesStateImpl({required final List<Employee> employees})
-      : _employees = employees;
 
-  factory _$EmployeesStateImpl.fromJson(Map<String, dynamic> json) =>
-      _$$EmployeesStateImplFromJson(json);
+class _$EmployeesStateImpl extends _EmployeesState {
+  const _$EmployeesStateImpl(
+      {this.employees = const AsyncValue<List<Employee>>.loading(),
+      this.filterSubject = ''})
+      : super._();
 
-  final List<Employee> _employees;
   @override
-  List<Employee> get employees {
-    if (_employees is EqualUnmodifiableListView) return _employees;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_employees);
-  }
+  @JsonKey()
+  final AsyncValue<List<Employee>> employees;
+  @override
+  @JsonKey()
+  final String filterSubject;
 
   @override
   String toString() {
-    return 'EmployeesState(employees: $employees)';
+    return 'EmployeesState(employees: $employees, filterSubject: $filterSubject)';
   }
 
   @override
@@ -129,14 +132,14 @@ class _$EmployeesStateImpl implements _EmployeesState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$EmployeesStateImpl &&
-            const DeepCollectionEquality()
-                .equals(other._employees, _employees));
+            (identical(other.employees, employees) ||
+                other.employees == employees) &&
+            (identical(other.filterSubject, filterSubject) ||
+                other.filterSubject == filterSubject));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_employees));
+  int get hashCode => Object.hash(runtimeType, employees, filterSubject);
 
   /// Create a copy of EmployeesState
   /// with the given fields replaced by the non-null parameter values.
@@ -146,24 +149,18 @@ class _$EmployeesStateImpl implements _EmployeesState {
   _$$EmployeesStateImplCopyWith<_$EmployeesStateImpl> get copyWith =>
       __$$EmployeesStateImplCopyWithImpl<_$EmployeesStateImpl>(
           this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$EmployeesStateImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _EmployeesState implements EmployeesState {
-  const factory _EmployeesState({required final List<Employee> employees}) =
-      _$EmployeesStateImpl;
-
-  factory _EmployeesState.fromJson(Map<String, dynamic> json) =
-      _$EmployeesStateImpl.fromJson;
+abstract class _EmployeesState extends EmployeesState {
+  const factory _EmployeesState(
+      {final AsyncValue<List<Employee>> employees,
+      final String filterSubject}) = _$EmployeesStateImpl;
+  const _EmployeesState._() : super._();
 
   @override
-  List<Employee> get employees;
+  AsyncValue<List<Employee>> get employees;
+  @override
+  String get filterSubject;
 
   /// Create a copy of EmployeesState
   /// with the given fields replaced by the non-null parameter values.

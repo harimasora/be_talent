@@ -1,14 +1,28 @@
 import 'package:be_talent/employees/models/employee.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 part 'employees_state.freezed.dart';
-part 'employees_state.g.dart';
 
 @freezed
 class EmployeesState with _$EmployeesState {
   const factory EmployeesState({
-    required List<Employee> employees,
+    @Default(AsyncValue<List<Employee>>.loading()) AsyncValue<List<Employee>> employees,
+    @Default('') String filterSubject,
   }) = _EmployeesState;
 
-  factory EmployeesState.fromJson(Map<String, dynamic> json) => _$EmployeesStateFromJson(json);
+  const EmployeesState._();
+
+  AsyncValue<List<Employee>> get filteredEmployees {
+    if (filterSubject.isEmpty) return employees;
+
+    return employees.whenData((list) {
+      return list.where((employee) {
+        return employee.name.toLowerCase().contains(filterSubject.toLowerCase()) ||
+            employee.job.toLowerCase().contains(filterSubject.toLowerCase()) ||
+            employee.formattedAdmissionDate.contains(filterSubject) ||
+            employee.phone.contains(filterSubject);
+      }).toList();
+    });
+  }
 }
