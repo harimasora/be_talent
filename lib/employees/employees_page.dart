@@ -10,7 +10,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class EmployeesPage extends HookConsumerWidget {
   const EmployeesPage({super.key});
 
-  // TODO: SizedBox to HorizontalSpace and VerticalSpace
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
