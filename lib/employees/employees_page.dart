@@ -1,5 +1,6 @@
 import 'package:be_talent/ds/spacings.dart';
 import 'package:be_talent/ds/text.dart';
+import 'package:be_talent/ds/vertical_space.dart';
 import 'package:be_talent/employees/widgets/employee_list_view.dart';
 import 'package:be_talent/employees/widgets/search_bar.dart';
 import 'package:be_talent/employees/widgets/sliver_app_bar.dart';
@@ -26,9 +27,9 @@ class EmployeesPage extends HookConsumerWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       BTHeading1('Funcionários'),
-                      SizedBox(height: Spacings.x4),
+                      VerticalSpace(Spacings.x4),
                       EmployeeSearchBar(),
-                      SizedBox(height: Spacings.x4),
+                      VerticalSpace(Spacings.x4),
                     ],
                   ),
                 ),

@@ -1,6 +1,7 @@
 import 'package:be_talent/common/use_focus_node_or_default.dart';
 import 'package:be_talent/common/use_map_focus_to_value.dart';
 import 'package:be_talent/ds/bt_click_region.dart';
+import 'package:be_talent/ds/horizontal_space.dart';
 import 'package:be_talent/ds/spacings.dart';
 import 'package:be_talent/ds/static_colors.dart';
 import 'package:be_talent/ds/text.dart';
@@ -64,7 +65,7 @@ class EmployeeSearchBar extends HookConsumerWidget {
                 width: 24,
                 colorFilter: ColorFilter.mode(StaticColors.black, BlendMode.srcATop),
               ),
-              SizedBox(width: Spacings.x1),
+              HorizontalSpace(Spacings.x1),
               Expanded(
                 child: TextField(
                   focusNode: containerFocusNode,

@@ -1,8 +1,10 @@
 import 'package:be_talent/ds/bt_expansion_list_tile.dart';
+import 'package:be_talent/ds/horizontal_space.dart';
 import 'package:be_talent/ds/skeleton.dart';
 import 'package:be_talent/ds/spacings.dart';
 import 'package:be_talent/ds/static_colors.dart';
 import 'package:be_talent/ds/text.dart';
+import 'package:be_talent/ds/vertical_space.dart';
 import 'package:be_talent/employees/employees_notifier.dart';
 import 'package:be_talent/employees/models/employee.dart';
 import 'package:flutter/material.dart';
@@ -56,7 +58,7 @@ class _Error extends HookConsumerWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Text('Ocorreu um erro ao carregar os dados'),
-          SizedBox(height: Spacings.x4),
+          VerticalSpace(Spacings.x4),
           ElevatedButton(
             onPressed: notifier.refresh,
             child: BTHeading2('Tentar novamente'),
@@ -89,7 +91,7 @@ class _Loading extends StatelessWidget {
               child: Row(
                 children: [
                   Skeleton.circle(size: Spacings.x8),
-                  SizedBox(width: Spacings.x4),
+                  HorizontalSpace(Spacings.x4),
                   Skeleton.roundedCorners(
                     height: styles[BTTypography.h3]!.fontSize!,
                     width: Spacings.x20,
@@ -126,7 +128,7 @@ class _Header extends StatelessWidget {
           child: Row(
             children: [
               BTHeading2('Foto'),
-              SizedBox(width: Spacings.x6),
+              HorizontalSpace(Spacings.x6),
               BTHeading2('Nome'),
               Spacer(),
               Container(
@@ -137,7 +139,7 @@ class _Header extends StatelessWidget {
                   borderRadius: BorderRadius.circular(Spacings.x2),
                 ),
               ),
-              SizedBox(width: Spacings.x4),
+              HorizontalSpace(Spacings.x4),
             ],
           ),
         ),
@@ -165,7 +167,7 @@ class EmployeeExpansionListTile extends HookConsumerWidget {
                 backgroundImage: Image.network(employee.image).image,
                 radius: Spacings.x4,
               ),
-              SizedBox(width: Spacings.x6),
+              HorizontalSpace(Spacings.x6),
               BTHeading3(employee.name),
             ],
           ),
@@ -192,7 +194,7 @@ class EmployeeExpansionListTile extends HookConsumerWidget {
               ],
             ),
             CustomPaint(painter: _DashedLine()),
-            SizedBox(height: Spacings.x4),
+            VerticalSpace(Spacings.x4),
             Row(
               children: [
                 BTHeading2('Data de admissão'),
@@ -201,7 +203,7 @@ class EmployeeExpansionListTile extends HookConsumerWidget {
               ],
             ),
             CustomPaint(painter: _DashedLine()),
-            SizedBox(height: Spacings.x4),
+            VerticalSpace(Spacings.x4),
             Row(
               children: [
                 BTHeading2('Telefone'),
@@ -210,7 +212,7 @@ class EmployeeExpansionListTile extends HookConsumerWidget {
               ],
             ),
             CustomPaint(painter: _DashedLine()),
-            SizedBox(height: Spacings.x4),
+            VerticalSpace(Spacings.x4),
           ],
         ),
       ),
