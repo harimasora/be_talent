@@ -3,6 +3,7 @@
 ##  Table of Contents
 
 - [ Overview](#-overview)
+- [ Screenshots](#-screenschots)
 - [ Features](#-features)
 - [ Project Structure](#-project-structure)
   - [ Project Index](#-project-index)
@@ -16,6 +17,12 @@
 ##  Overview
 
 **be_talent** is a project developed using Flutter as a technical challenge for [BeTalent](https://betalent.tech/)'s hiring process. The details of the challenge can be found [here](https://github.com/BeMobile/teste-pratico-mobile).
+
+---
+
+## Screenshots
+
+<img width="386" alt="Captura de Tela 2025-02-17 às 21 47 37" src="https://github.com/user-attachments/assets/37344fa8-916b-4ea9-a79b-79ba70cb67ac" />
 
 ---
 
