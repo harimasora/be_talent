@@ -22,7 +22,7 @@
 
 ## Screenshots
 
-<img width="386" alt="Captura de Tela 2025-02-17 às 21 47 37" src="https://github.com/user-attachments/assets/37344fa8-916b-4ea9-a79b-79ba70cb67ac" />
+https://github.com/user-attachments/assets/65e39bbb-59f1-4d84-9c99-20aa746fa722
 
 ---
 
